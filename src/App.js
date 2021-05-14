@@ -3,6 +3,7 @@ import './App.css';
 import {BrowserRouter as Router,Route,Switch} from 'react-router-dom';
 import { withAuth0} from '@auth0/auth0-react';
 import AboutUs from './AboutUs';
+import Home from './Home';
 import NavBar from './NavBar';
 import Footer from './Footer';
 import LogIn from './LogIn';
@@ -16,9 +17,9 @@ class App extends React.Component{
     return(
       <Router>
         <Switch>
+
           <Route exact path="/">
-            <NavBar />
-            <LogIn/>
+            {!isAuthenticated? <LogIn/> : <Home />}
           </Route>
 
           <Route path="/my-profile">
