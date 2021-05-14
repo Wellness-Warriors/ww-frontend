@@ -28,15 +28,19 @@ class MyProfile extends React.Component{
   };
 
   render(){
-    console.log(this.props.auth0);
+    console.log(this.props);
     return(
 
       <>
 
         <div>
           <h1>Hello from MyProfile component</h1>
-          {/* <img src={user.picture} alt={user.name}/>
-          <p>{user.email}</p> */}
+
+          <img
+            src={this.props.picture}
+            alt={this.props.name}/>
+
+          <p>{this.props.email}</p>
         </div>
 
 

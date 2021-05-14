@@ -11,9 +11,18 @@ import MyProfile from './MyProfile';
 
 
 class App extends React.Component{
+  constructor(props){
+    super(props);
+    this.state = {
+      name: '',
+      email: '',
+      pic: '',
+    };
+  }
   render(){
     const { user, isAuthenticated } = this.props.auth0;
-    console.log('app user:',user, isAuthenticated);
+    console.log('app user:',user && user.name,user && user.email,user && user.picture);
+
     return(
       <Router>
         <Switch>
@@ -24,7 +33,11 @@ class App extends React.Component{
 
           <Route path="/my-profile">
             <NavBar />
-            <MyProfile />
+            <MyProfile
+              name={user && user.name}
+              email={user && user.email}
+              picture={user && user.picture}
+            />
             <Footer />
           </Route>
 
