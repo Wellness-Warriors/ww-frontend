@@ -14,15 +14,17 @@ class Home extends React.Component {
   }
   componentDidMount(){
     this.getZen();
+    // how does this approach cause memory leaks?
+    // Warning: Can't perform a React state update on an unmounted component. This is a no-op, but it indicates a memory leak in your application. To fix, cancel all subscriptions and asynchronous tasks in the componentWillUnmount method.
   }
 
   getZen = async() =>{
     try{
-
-      let zenData = await axios.get(`{process.env.REACT_APP_BACKEND_URL}/zen`);
-      console.log('response:',zenData);
-      console.log('response:',zenData.quote,zenData.author);
-
+      let zenData = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/zen`);
+      this.setState({
+        quote: zenData.data[0].q,
+        author: zenData.data[0].a
+      });
     }catch(error){
       console.log(error);
     }
@@ -40,7 +42,12 @@ class Home extends React.Component {
         <NavBar />
 
         <Card>
-          quote
+          <Card.Body>
+            <h2>
+              {this.state.quote}
+            </h2>
+            - {this.state.author}
+          </Card.Body>
         </Card>
 
         <Card>
@@ -55,11 +62,12 @@ class Home extends React.Component {
                 as="select"
                 custom
               >
-                <option>Depressed</option>
-                <option>Happy</option>
-                <option>Sad</option>
-                <option>Nervous</option>
-                <option>Anxious</option>
+                <option>Joy</option>
+                <option>Sadness</option>
+                <option>Surprise</option>
+                <option>Fear</option>
+                <option>Anger</option>
+                <option>Disgust</option>
               </Form.Control>
             </Form.Group>
           </Form>
