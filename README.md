@@ -15,3 +15,4 @@ npm i react-router-dom@5
 - nest the components in desired route
 
 - added dotenv package
+- still trying to remove env file
