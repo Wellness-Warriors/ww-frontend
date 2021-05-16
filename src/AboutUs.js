@@ -5,9 +5,10 @@ class AboutUs extends React.Component {
   render() {
     return (
       <>
-        <h1>About Us</h1>
+        <h1>Hello from Team Wellness Warrior</h1>
+        <h3>About us:</h3>
 
-        <Card style={{ width: '18rem' }}>
+        <Card style={{ width: '50rem' }}>
           <Card.Img variant="top" src="img/allee.jpg" />
           <Card.Body>
             <Card.Title>Allee McCoy</Card.Title>
@@ -16,9 +17,9 @@ class AboutUs extends React.Component {
             </Card.Text>
           </Card.Body>
         </Card>
-
-        <Card style={{ width: '18rem' }}>
-          <Card.Img variant="top" src="img/shelby.JPG" />
+        <br />
+        <Card style={{ width: '50rem' }}>
+          <Card.Img variant="top" src="img/shelby.jpg" />
           <Card.Body>
             <Card.Title>Shelby Harner</Card.Title>
             <Card.Text>
@@ -26,8 +27,8 @@ class AboutUs extends React.Component {
             </Card.Text>
           </Card.Body>
         </Card>
-
-        <Card style={{ width: '18rem' }}>
+        <br />
+        <Card style={{ width: '50rem' }}>
           <Card.Img variant="top" src="img/qadree.png" />
           <Card.Body>
             <Card.Title>Qadree Trimble</Card.Title>
@@ -38,8 +39,8 @@ class AboutUs extends React.Component {
             </Card.Text>
           </Card.Body>
         </Card>
-
-        <Card style={{ width: '18rem' }}>
+        <br />
+        <Card style={{ width: '50rem' }}>
           <Card.Img variant="top" src="img/lorenzo.png" />
           <Card.Body>
             <Card.Title>Lorenzo Ortega</Card.Title>
