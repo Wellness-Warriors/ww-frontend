@@ -13,7 +13,7 @@ import MyProfile from './MyProfile';
 class App extends React.Component{
   render(){
     const { user, isAuthenticated } = this.props.auth0;
-    console.log('app user:',user, isAuthenticated);
+
     return(
       <Router>
         <Switch>
@@ -24,7 +24,13 @@ class App extends React.Component{
 
           <Route path="/my-profile">
             <NavBar />
-            <MyProfile />
+            {isAuthenticated &&
+            <MyProfile
+              name={user.name}
+              email={user.email}
+              picture={user.picture}
+            />
+            }
             <Footer />
           </Route>
 
