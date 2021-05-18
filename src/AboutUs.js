@@ -1,15 +1,20 @@
 import React from 'react';
-import CardDeck from 'react-bootstrap/CardDeck';
 import Card from 'react-bootstrap/Card';
+import Container from 'react-bootstrap/Container';
+import Footer from './Footer';
 
 class AboutUs extends React.Component {
   render() {
     return (
       <>
-        <h1>Hello from Team Wellness Warriors</h1>
-        <h3>About us:</h3>
-        <CardDeck>
-          <Card border="info">
+        <div>
+          <br />
+          <Container>
+            <h1>Hello from Team Wellness Warriors</h1>
+            <h3>About us:</h3>
+          </Container>
+          <br />
+          <Card border="info" style={{ width: '70rem' }}>
             <Card.Img variant="top" src="./img/allee.jpg" style={{ width: '18rem' }} />
             <Card.Body>
               <Card.Title>Allee McCoy</Card.Title>
@@ -18,8 +23,8 @@ class AboutUs extends React.Component {
               </Card.Text>
             </Card.Body>
           </Card>
-
-          <Card border="info">
+          <br />
+          <Card border="info" style={{ width: '70rem' }}>
             <Card.Img variant="top" src="./img/shelby.JPG" style={{ width: '18rem' }} />
             <Card.Body>
               <Card.Title>Shelby Harner</Card.Title>
@@ -28,8 +33,8 @@ class AboutUs extends React.Component {
               </Card.Text>
             </Card.Body>
           </Card>
-
-          <Card border="info">
+          <br />
+          <Card border="info" style={{ width: '70rem' }}>
             <Card.Img variant="top" src="./img/qadree.png" style={{ width: '18rem' }} />
             <Card.Body>
               <Card.Title>Qadree Trimble</Card.Title>
@@ -40,8 +45,8 @@ class AboutUs extends React.Component {
               </Card.Text>
             </Card.Body>
           </Card>
-
-          <Card border="info">
+          <br />
+          <Card border="info" style={{ width: '70rem' }}>
             <Card.Img variant="top" src="../img/lorenzo.png" style={{ width: '18rem' }} />
             <Card.Body>
               <Card.Title>Lorenzo Ortega</Card.Title>
@@ -50,7 +55,11 @@ class AboutUs extends React.Component {
               </Card.Text>
             </Card.Body>
           </Card>
-        </CardDeck>
+        </div>
+
+        <div>
+          <Footer />
+        </div>
       </>
     );
   }
