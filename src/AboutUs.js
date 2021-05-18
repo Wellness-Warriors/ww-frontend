@@ -8,7 +8,7 @@ class AboutUs extends React.Component {
         <h1>About Us</h1>
 
         <Card style={{ width: '18rem' }}>
-          <Card.Img variant="top" src="img/allee.jpg" />
+          <Card.Img variant="top" src="./img/allee.jpg"/>
           <Card.Body>
             <Card.Title>Allee McCoy</Card.Title>
             <Card.Text>
@@ -18,7 +18,7 @@ class AboutUs extends React.Component {
         </Card>
 
         <Card style={{ width: '18rem' }}>
-          <Card.Img variant="top" src="img/shelby.JPG" />
+          <Card.Img variant="top" src="./img/shelby.JPG" />
           <Card.Body>
             <Card.Title>Shelby Harner</Card.Title>
             <Card.Text>
@@ -28,7 +28,7 @@ class AboutUs extends React.Component {
         </Card>
 
         <Card style={{ width: '18rem' }}>
-          <Card.Img variant="top" src="img/qadree.png" />
+          <Card.Img variant="top" src="./img/qadree.png" />
           <Card.Body>
             <Card.Title>Qadree Trimble</Card.Title>
             <Card.Text>
@@ -40,7 +40,7 @@ class AboutUs extends React.Component {
         </Card>
 
         <Card style={{ width: '18rem' }}>
-          <Card.Img variant="top" src="img/lorenzo.png" />
+          <Card.Img variant="top" src="../img/lorenzo.png" />
           <Card.Body>
             <Card.Title>Lorenzo Ortega</Card.Title>
             <Card.Text>

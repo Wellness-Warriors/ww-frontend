@@ -29,7 +29,6 @@ class Home extends React.Component {
       console.log(error);
     }
   }
-
   onChangeHandler = (e) => {
     e.preventDefault();
     let selected = e.target.value;
@@ -42,12 +41,8 @@ class Home extends React.Component {
         <NavBar />
 
         <Card>
-          <Card.Body>
-            <h2>
-              {this.state.quote}
-            </h2>
-            - {this.state.author}
-          </Card.Body>
+          {this.state.quote}
+          - {this.state.author}
         </Card>
 
         <Card>

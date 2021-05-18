@@ -21,7 +21,6 @@ class App extends React.Component{
   }
   render(){
     const { user, isAuthenticated } = this.props.auth0;
-    console.log('app user:',user && user.name,user && user.email,user && user.picture);
 
     return(
       <Router>
@@ -33,11 +32,13 @@ class App extends React.Component{
 
           <Route path="/my-profile">
             <NavBar />
+            {isAuthenticated &&
             <MyProfile
-              name={user && user.name}
-              email={user && user.email}
-              picture={user && user.picture}
+              name={user.name}
+              email={user.email}
+              picture={user.picture}
             />
+            }
             <Footer />
           </Route>
 
