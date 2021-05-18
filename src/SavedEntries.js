@@ -24,7 +24,7 @@ class SavedEntries extends React.Component{
   render(){
 
     const arrOfEntries = this.props.listOfEntries.data[0].entry;
-    console.log(arrOfEntries);
+    console.log(this.props);
     return(
       <div>
         <br />
