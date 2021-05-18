@@ -81,21 +81,17 @@ class MyProfile extends React.Component{
     return(
 
       <>
-        <Card style={{ width: '14rem' }}>
-          <h1>Welcome to your profile {this.props.name}</h1>
-          <img
-            src={this.props.picture}
-            alt={this.props.name}
-          />
-          <p>{this.props.email}</p>
+        <Card style={{ width: '15rem' }} className="text-center">
+          Hello from MyProfile component
+          <br />
+          <img src={this.props.picture} alt="" />
+          <p>Hello! {this.props.name}</p>
+          <p>Logged in with: {this.props.email}</p>
         </Card>
-
-        <Card style={{ width: '14rem' }}>
-          <Button variant="primary" onClick={this.handleShow}>
-            {''}
-            New Entry
-          </Button>
-        </Card>
+        <br />
+        <Button variant="info" onClick={this.handleShow} style={{ width: '20rem' }}>
+          New Entry
+        </Button>
 
         <Modal show={this.state.setShow} onHide={this.handleClose}>
           <Modal.Header closeButton>

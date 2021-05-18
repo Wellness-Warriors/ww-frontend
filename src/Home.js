@@ -2,7 +2,10 @@ import React from 'react';
 import axios from 'axios';
 import NavBar from './NavBar';
 import Card from 'react-bootstrap/Card';
+import Container from 'react-bootstrap/Container';
+import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
+import Footer from './Footer';
 
 class Home extends React.Component {
   constructor(props){
@@ -34,40 +37,80 @@ class Home extends React.Component {
     let selected = e.target.value;
     console.log('selected',selected);
   }
+
+  workoutHandler = (e)=> {
+    e.preventDefault();
+    console.log('I submit stuff');
+  }
   render() {
     return (
-      <div>
-        Home component
+
+      <>
         <NavBar />
+        <br />
+        <Container>
+          <Card border="info" className="text-center">
+            <Card.Body>
+              <h3>
+              quote goes here  {this.state.quote}
+              </h3>
+              -author goes here {this.state.author}
+            </Card.Body>
+          </Card>
+          <br />
+          <Card className="text-center" border="info">
+            <Form
+              onChange={this.onChangeHandler}>
+              <Form.Group
+                controlId="exampleForm.SelectCustom">
+                <Form.Label>
+                  <h3>Emotion Selection</h3>
+                </Form.Label>
+                <Col lg="auto">
+                  <Form.Control
+                    as="select"
+                    custom
+                  >
+                    <option>Joy</option>
+                    <option>Sadness</option>
+                    <option>Surprise</option>
+                    <option>Fear</option>
+                    <option>Anger</option>
+                    <option>Disgust</option>
+                  </Form.Control>
+                </Col>
+              </Form.Group>
+            </Form>
+          </Card>
+          <br />
+          <Card className="text-center" border="info">
+            <Form
+              onChange={this.workoutHandler}>
+              <Form.Group
+                controlId="exampleForm.SelectCustom">
+                <Form.Label>
+                  <h3>Muscle Group Selection</h3>
+                </Form.Label>
+                <Col lg="auto">
+                  <Form.Control
+                    as="select"
+                    custom
+                  >
+                    <option>Shoulder</option>
+                    <option>Back</option>
+                    <option>Abdomen</option>
+                    <option>Arms</option>
+                    <option>Legs</option>
+                    <option>Glutes</option>
+                  </Form.Control>
+                </Col>
+              </Form.Group>
+            </Form>
+          </Card>
 
-        <Card>
-          {this.state.quote}
-          - {this.state.author}
-        </Card>
-
-        <Card>
-          <Form
-            onChange={this.onChangeHandler}>
-            <Form.Group
-              controlId="exampleForm.SelectCustom">
-              <Form.Label>
-                Emotion Selection
-              </Form.Label>
-              <Form.Control
-                as="select"
-                custom
-              >
-                <option>Joy</option>
-                <option>Sadness</option>
-                <option>Surprise</option>
-                <option>Fear</option>
-                <option>Anger</option>
-                <option>Disgust</option>
-              </Form.Control>
-            </Form.Group>
-          </Form>
-        </Card>
-      </div>
+        </Container>
+        <Footer />
+      </>
     );
   }
 }
