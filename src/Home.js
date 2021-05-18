@@ -52,9 +52,9 @@ class Home extends React.Component {
           <Card border="info" className="text-center">
             <Card.Body>
               <h3>
-              quote goes here  {this.state.quote}
+                {this.state.quote}
               </h3>
-              -author goes here {this.state.author}
+              -{this.state.author}
             </Card.Body>
           </Card>
           <br />
