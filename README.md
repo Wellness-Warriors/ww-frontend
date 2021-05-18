@@ -13,3 +13,6 @@ npm i react-router-dom@5
 - add path="" property to Route Component
   where "/" is the root/homepage
 - nest the components in desired route
+
+- added dotenv package
+- still trying to remove env file

@@ -11,6 +11,14 @@ import MyProfile from './MyProfile';
 
 
 class App extends React.Component{
+  constructor(props){
+    super(props);
+    this.state = {
+      name: '',
+      email: '',
+      pic: '',
+    };
+  }
   render(){
     const { user, isAuthenticated } = this.props.auth0;
 

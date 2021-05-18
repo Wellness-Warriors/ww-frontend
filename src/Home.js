@@ -57,11 +57,12 @@ class Home extends React.Component {
                 as="select"
                 custom
               >
-                <option>Depressed</option>
-                <option>Happy</option>
-                <option>Sad</option>
-                <option>Nervous</option>
-                <option>Anxious</option>
+                <option>Joy</option>
+                <option>Sadness</option>
+                <option>Surprise</option>
+                <option>Fear</option>
+                <option>Anger</option>
+                <option>Disgust</option>
               </Form.Control>
             </Form.Group>
           </Form>
