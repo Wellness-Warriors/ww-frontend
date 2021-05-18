@@ -88,9 +88,11 @@ class MyProfile extends React.Component {
           <p>Logged in with: {this.props.email}</p>
         </Card>
         <br />
-        <Button id="button" variant="info" onClick={this.handleShow} style={{ width: '20rem' }}>
+        <Card border="info" style={{ width: '20rem' }}>
+          <Button id="button" variant="info" onClick={this.handleShow} style={{ width: '20rem' }}>
           New Entry
-        </Button>
+          </Button>
+        </Card>
 
         <Modal show={this.state.setShow} onHide={this.handleClose}>
           <Modal.Header closeButton>
