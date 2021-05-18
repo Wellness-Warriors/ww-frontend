@@ -27,6 +27,7 @@ class SavedEntries extends React.Component{
     console.log(arrOfEntries);
     return(
       <div>
+        <br />
         {(arrOfEntries.length > 0)?
           <Container>
             <Carousel>
@@ -41,6 +42,7 @@ class SavedEntries extends React.Component{
                     <h3>{entry.emotion}</h3>
                     <p>{entry.notes}</p>
                     <Button
+                      variant="info"
                       onClick={this.handleDeleteRequest(entry._id,)}
                     >Delete Entry
                     </Button>
