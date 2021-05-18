@@ -140,6 +140,7 @@ class MyProfile extends React.Component{
           <SavedEntries
             getAllEntries={this.getEntries}
             listOfEntries={this.state.listOfEntries}
+            email={this.props.email}
           />
         }
 
