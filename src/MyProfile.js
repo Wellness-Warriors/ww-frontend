@@ -22,6 +22,9 @@ class MyProfile extends React.Component {
   }
 
   componentDidMount() {
+  }
+
+  componentDidUpdate(){
     this.getEntries();
   }
 
