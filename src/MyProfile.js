@@ -38,15 +38,20 @@ class MyProfile extends React.Component {
   }
 
   getEntries = async () => {
-    console.log(this.props.email);
+
     const entries = await axios
       .get(`${process.env.REACT_APP_BACKEND_URL}/entry`, { params: { email: this.props.email } });
-    // console.log(entries);
-    this.setState({
-      hasEntries: true,
-      listOfEntries: entries,
-    });
-
+    console.log(entries);
+    if(entries.data>0){
+      this.setState({
+        hasEntries: true,
+        listOfEntries: entries,
+      });
+    }else{
+      this.setState({
+        hasEntries: false,
+      });
+    }
   }
 
   addEntry = () => {
@@ -70,16 +75,17 @@ class MyProfile extends React.Component {
       setShow: true,
     });
   };
+
   handleClose = () => {
     this.setState({
       setShow: false,
     });
   }
+
   render() {
     // console.log(this.state.listOfEntries.data.length);
 
     return (
-
       <>
         <br />
         <Card border="info" style={{ width: '20rem' }} className="text-center">
@@ -93,14 +99,15 @@ class MyProfile extends React.Component {
           New Entry
           </Button>
         </Card>
+        {/* look into componentDidUpdate for auto refresh */}
 
         <Modal show={this.state.setShow} onHide={this.handleClose}>
           <Modal.Header closeButton>
             <Modal.Title>New Entry</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <Form >
 
+            <Form >
               <Form.Group>
                 <Form.Label>Date</Form.Label>
                 <Form.Control
@@ -144,9 +151,7 @@ class MyProfile extends React.Component {
             email={this.props.email}
           />
         }
-
       </>
-
     );
   }
 }

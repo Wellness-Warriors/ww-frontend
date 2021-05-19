@@ -15,7 +15,7 @@ class SavedEntries extends React.Component{
       .delete(`${process.env.REACT_APP_BACKEND_URL}/entry/${id}?user=${email}`)
       .then((response)=>{
         console.log('entry deleted');
-        this.props.getAllEntries(response);
+        this.props.getAllEntries();
       });
 
   }
@@ -53,6 +53,10 @@ class SavedEntries extends React.Component{
           </Container>
           :<h3>Your Entries will Render Here</h3>
         }
+        <br />
+        <Container>
+        </Container>
+        <br />
       </div>
     );
   }

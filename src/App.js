@@ -5,7 +5,7 @@ import { withAuth0} from '@auth0/auth0-react';
 import AboutUs from './AboutUs';
 import Home from './Home';
 import NavBar from './NavBar';
-import Footer from './Footer';
+// import Footer from './Footer';
 import LogIn from './LogIn';
 import MyProfile from './MyProfile';
 
@@ -25,7 +25,6 @@ class App extends React.Component{
     return(
       <Router>
         <Switch>
-
           <Route exact path="/">
             {!isAuthenticated? <LogIn/> : <Home />}
           </Route>
@@ -39,7 +38,7 @@ class App extends React.Component{
               picture={user.picture}
             />
             }
-            <Footer />
+            {/* <Footer /> */}
           </Route>
 
           <Route path="/about-us">
@@ -47,7 +46,6 @@ class App extends React.Component{
             <AboutUs />
           </Route>
         </Switch>
-
       </Router>
     );
   }
