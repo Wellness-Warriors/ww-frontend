@@ -5,9 +5,9 @@ import { withAuth0} from '@auth0/auth0-react';
 import AboutUs from './AboutUs';
 import Home from './Home';
 import NavBar from './NavBar';
-// import Footer from './Footer';
 import LogIn from './LogIn';
 import MyProfile from './MyProfile';
+import Fitness from './Fitness';
 
 
 class App extends React.Component{
@@ -29,6 +29,11 @@ class App extends React.Component{
             {!isAuthenticated? <LogIn/> : <Home />}
           </Route>
 
+          <Route path="/fitness-food">
+            <NavBar />
+            <Fitness />
+          </Route>
+
           <Route path="/my-profile">
             <NavBar />
             {isAuthenticated &&
@@ -38,7 +43,6 @@ class App extends React.Component{
               picture={user.picture}
             />
             }
-            {/* <Footer /> */}
           </Route>
 
           <Route path="/about-us">

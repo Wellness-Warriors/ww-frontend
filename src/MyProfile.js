@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
+import Footer from './Footer';
 import SavedEntries from './SavedEntries';
 
 class MyProfile extends React.Component {
@@ -42,12 +43,12 @@ class MyProfile extends React.Component {
     const entries = await axios
       .get(`${process.env.REACT_APP_BACKEND_URL}/entry`, { params: { email: this.props.email } });
     console.log(entries);
-    if(entries.data>0){
+    if (entries.data > 0) {
       this.setState({
         hasEntries: true,
         listOfEntries: entries,
       });
-    }else{
+    } else {
       this.setState({
         hasEntries: false,
       });
@@ -97,7 +98,7 @@ class MyProfile extends React.Component {
         <br />
         <Card border="info" style={{ width: '20rem' }}>
           <Button id="button" variant="info" onClick={this.handleShow} style={{ width: '20rem' }}>
-          New Entry
+            New Entry
           </Button>
         </Card>
         {/* look into componentDidUpdate for auto refresh */}
@@ -152,6 +153,10 @@ class MyProfile extends React.Component {
             email={this.props.email}
           />
         }
+
+        <div>
+          <Footer />
+        </div>
       </>
     );
   }

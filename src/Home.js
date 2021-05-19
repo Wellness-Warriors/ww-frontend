@@ -3,8 +3,6 @@ import axios from 'axios';
 import NavBar from './NavBar';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
-import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
 import Footer from './Footer';
 import Sentiment from 'sentiment';
 const sentiment = new Sentiment();
@@ -62,10 +60,7 @@ class Home extends React.Component {
     let selected = e.target.value;
     console.log('selected',selected);
   }
-  workoutHandler = (e)=> {
-    e.preventDefault();
-    console.log('I submit stuff');
-  }
+
 
   render() {
     return (
@@ -82,9 +77,10 @@ class Home extends React.Component {
               -{this.state.author}
             </Card.Body>
           </Card>
-          <br />
+        </Container>
+        <br />
 
-          {/* <Card className="text-center" border="info">
+        {/* <Card className="text-center" border="info">
             <Form
               onChange={this.onChangeHandler}>
               <Form.Group
@@ -110,34 +106,6 @@ class Home extends React.Component {
           </Card>
           <br /> */}
 
-          <Card className="text-center" border="info">
-            <Form
-              onChange={this.workoutHandler}>
-              <Form.Group
-                controlId="MuscleForm.SelectCustom">
-                <Form.Label>
-                  <h3>Muscle Group Selection</h3>
-                </Form.Label>
-                <Col lg="auto">
-                  <Form.Control
-                    as="select"
-                    custom
-                  >
-                    <option>Shoulder</option>
-                    <option>Back</option>
-                    <option>Abdomen</option>
-                    <option>Arms</option>
-                    <option>Legs</option>
-                    <option>Glutes</option>
-                  </Form.Control>
-                </Col>
-              </Form.Group>
-            </Form>
-          </Card>
-
-        </Container>
-        <br />
-
         <Container>
           <Card border="info" style={{ width: '20rem' }} className="text-center">
             <h2>Text Analysis</h2>
@@ -152,6 +120,7 @@ class Home extends React.Component {
           </Card>
         </Container>
         <br />
+
         {/* <Container>
           <iframe
             src="https://www.health.gov/myhealthfinder?widget=true"
@@ -169,9 +138,9 @@ class Home extends React.Component {
         </Container> */}
         <br />
 
-        <Container>
+        <div>
           <Footer />
-        </Container>
+        </div>
       </>
 
     );
