@@ -69,7 +69,7 @@ class MyProfile extends React.Component {
 
         (response)=>{
           this.getEntries();
-
+        });
   }
 
   handleShow = (e) => {
