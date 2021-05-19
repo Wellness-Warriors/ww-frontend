@@ -61,7 +61,7 @@ class MyProfile extends React.Component{
       })
       .then(
         (response)=>{
-          console.log('serverResponse:', response);
+          this.getEntries();
         });
   }
 
@@ -135,8 +135,8 @@ class MyProfile extends React.Component{
             </Form>
           </Modal.Body>
         </Modal>
-
-        {this.state.hasEntries &&
+        {/* credit Michelle for conditional */}
+        {this.state.listOfEntries.data && (this.state.listOfEntries.data.length > 0) &&
           <SavedEntries
             getAllEntries={this.getEntries}
             listOfEntries={this.state.listOfEntries}
