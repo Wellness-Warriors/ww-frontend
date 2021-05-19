@@ -16,3 +16,10 @@ npm i react-router-dom@5
 
 - added dotenv package
 - still trying to remove env file
+
+- [health.gov web widget](https://health.gov/our-work/health-literacy/consumer-health-content/free-web-content/health-widgets-badges)
+personalized information for a specific person based on age, Here are important ways to stay healthy.
+-https://health.gov/our-work/health-literacy/consumer-health-content/free-web-content/apis-developers/terms-use must properly cite this per their instructions
+
+sentiment text analyze library
+https://www.npmjs.com/package/sentiment

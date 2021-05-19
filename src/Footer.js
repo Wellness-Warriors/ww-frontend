@@ -1,9 +1,12 @@
 import React from 'react';
+import './Footer.css';
 
 class Footer extends React.Component{
   render(){
     return(
-      <h4>&copy; Team Wellness Warrior</h4>
+      <div id="Footer" class="fixed-bottom">
+        <footer>&copy; Team Wellness Warrior</footer>
+      </div>
     );
   }
 }
