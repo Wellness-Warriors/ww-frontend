@@ -6,6 +6,8 @@ import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Footer from './Footer';
+import Sentiment from 'sentiment';
+const sentiment = new Sentiment();
 
 class Home extends React.Component {
   constructor(props){
@@ -13,14 +15,37 @@ class Home extends React.Component {
     this.state = {
       quote: '',
       author: '',
+      sentimentScore: null,
+      generalSentiment: null,
     };
-  }
-  componentDidMount(){
-    this.getZen();
-    // how does this approach cause memory leaks?
-    // Warning: Can't perform a React state update on an unmounted component. This is a no-op, but it indicates a memory leak in your application. To fix, cancel all subscriptions and asynchronous tasks in the componentWillUnmount method.
+    this.getSentiment = this.getSentiment.bind(this);
   }
 
+  componentDidMount(){
+    this.getZen();
+
+  }
+
+  getSentiment(e){
+    const result = sentiment.analyze(e.target.value);
+    console.log(result);
+    this.setState({
+      sentimentScore: result.score
+    });
+    if(result.score < 0){
+      this.setState({
+        generalSentiment: 'negative emotions'
+      });
+    }else if (result.score > 0){
+      this.setState({
+        generalSentiment: 'positive emotions'
+      });
+    }else {
+      this.setState({
+        generalSentiment: 'neutral emotions'
+      });
+    }
+  }
   getZen = async() =>{
     try{
       let zenData = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/zen`);
@@ -37,11 +62,11 @@ class Home extends React.Component {
     let selected = e.target.value;
     console.log('selected',selected);
   }
-
   workoutHandler = (e)=> {
     e.preventDefault();
     console.log('I submit stuff');
   }
+
   render() {
     return (
 
@@ -58,11 +83,12 @@ class Home extends React.Component {
             </Card.Body>
           </Card>
           <br />
-          <Card className="text-center" border="info">
+
+          {/* <Card className="text-center" border="info">
             <Form
               onChange={this.onChangeHandler}>
               <Form.Group
-                controlId="exampleForm.SelectCustom">
+                controlId="EmotionForm.SelectCustom">
                 <Form.Label>
                   <h3>Emotion Selection</h3>
                 </Form.Label>
@@ -82,12 +108,13 @@ class Home extends React.Component {
               </Form.Group>
             </Form>
           </Card>
-          <br />
+          <br /> */}
+
           <Card className="text-center" border="info">
             <Form
               onChange={this.workoutHandler}>
               <Form.Group
-                controlId="exampleForm.SelectCustom">
+                controlId="MuscleForm.SelectCustom">
                 <Form.Label>
                   <h3>Muscle Group Selection</h3>
                 </Form.Label>
@@ -109,8 +136,44 @@ class Home extends React.Component {
           </Card>
 
         </Container>
-        <Footer />
+        <br />
+
+        <Container>
+          <Card border="info" style={{ width: '20rem' }} className="text-center">
+            <h2>Text Analysis</h2>
+            <p>Tell us about your day:</p>
+            <textarea onChange={this.getSentiment}/>
+            <p>
+              Sentiment Score: {this.state.sentimentScore}
+            </p>
+            <p>
+              General Sentiment: {this.state.generalSentiment}
+            </p>
+          </Card>
+        </Container>
+        <br />
+        {/* <Container>
+          <iframe
+            src="https://www.health.gov/myhealthfinder?widget=true"
+            name="myhealthfinderframe"
+            frameborder="0"
+            id="myhealthfinderframe"
+            scrolling="yes"
+            height="485" width="100%"
+            marginheight="0"
+            title="myhealthfinder widget"
+            marginwidth="0">
+            <p>Your browser does not support iframes.
+            </p>
+          </iframe>
+        </Container> */}
+        <br />
+
+        <Container>
+          <Footer />
+        </Container>
       </>
+
     );
   }
 }
