@@ -8,6 +8,7 @@ import NavBar from './NavBar';
 import LogIn from './LogIn';
 import MyProfile from './MyProfile';
 import Fitness from './Fitness';
+import Food from './Food';
 
 
 class App extends React.Component{
@@ -19,6 +20,7 @@ class App extends React.Component{
       pic: '',
     };
   }
+
   render(){
     const { user, isAuthenticated } = this.props.auth0;
 
@@ -29,9 +31,14 @@ class App extends React.Component{
             {!isAuthenticated? <LogIn/> : <Home />}
           </Route>
 
-          <Route path="/fitness-food">
+          <Route path="/fitness">
             <NavBar />
             <Fitness />
+          </Route>
+
+          <Route path="/food">
+            <NavBar />
+            <Food />
           </Route>
 
           <Route path="/my-profile">
