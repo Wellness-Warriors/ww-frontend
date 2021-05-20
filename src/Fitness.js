@@ -8,26 +8,25 @@ import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import ListGroup from 'react-bootstrap/ListGroup';
 
+
 class Fitness extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      workout: '',
+      workoutEntry: '',
+      hasWorkouts: false,
+      workouts: [],
       recipeEntry: '',
       hasRecipes: false,
       recipes: [],
     };
   }
 
-  workoutHandler = (e) => {
-    e.preventDefault();
-    console.log('I submit stuff');
-  }
-
   edamamHandler = (e) => {
     e.preventDefault();
     this.getEdamam();
   }
+
   getEdamam = () => {
 
     const options = {
@@ -40,32 +39,64 @@ class Fitness extends React.Component {
       }
     };
 
-    axios.request(options).then(function (response) {
-      if(response.data.hits>0){
+    axios
+      .request(options)
+      .then( (response) => {
+        console.log('response.data:',response.data);
         this.setState({
           hasRecipes: true,
-          recipes: response.data.hits,
+          recipes: response.data.hits
         });
-      }else{
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  }
+
+  workoutHandler = (e) => {
+    const id = parseInt(e.target.value);
+    this.getWorkout(id);
+  }
+
+  getWorkout = (ident) => {
+    axios
+      .get('https://wger.de/api/v2/exerciseinfo/?limit=100&offset=20')
+      .then(response => {
+        let allWorkouts = response.data.results;
+        let results = allWorkouts.filter(workout => {
+          return (workout.category.id === ident);
+        });
         this.setState({
-          hasRecipes: false,
+          hasWorkouts: true,
+          workouts: results,
         });
-      }
-    }).catch(function (error) {
-      console.error(error);
-    });
+      });
   }
 
   render(){
-    console.log((this.state.recipes && this.state.recipes.length > 0));
 
-    // const allrecipes = this.state.recipes && (this.state.recipes.length > 0);
+    let allRecipes = (this.state.hasRecipes && this.state.recipes);
+    let displayRecipes = allRecipes && this.state.recipes.map((item, index) => {
+      return(
+        <ListGroup.Item key={index}>
+          {item.recipe.label} : {item.recipe.url}
+        </ListGroup.Item>
+      );
+    });
 
-    // allrecipes.map((item, index) => (
-    //   <ListGroup.Item key={index}>
-    //     {item.recipe.label} : {item.recipe.url}
-    //   </ListGroup.Item>
-    // ));
+    let selectedWorkouts = this.state.hasWorkouts && this.state.workouts;
+    let displayWorkout = selectedWorkouts&&this.state.workouts
+      .map((item,idx)=>{
+        return (
+          <ListGroup.Item key={idx}>
+            {/* <h3>{item.category.name}</h3> */}
+            <h3>{item.name}</h3>
+            Workout Description:
+            {(item.description)
+              .replace(/(<([^>]+)>)/ig,'')}
+          </ListGroup.Item>
+        );
+      });
 
     return (
       <>
@@ -82,23 +113,27 @@ class Fitness extends React.Component {
                 </Form.Label>
                 <Col lg="auto">
                   <Form.Control
+                    onInput={(e) => this.workoutHandler}
                     as="select"
                     custom
                   >
-                    <option>Shoulder</option>
-                    <option>Back</option>
-                    <option>Abdomen</option>
-                    <option>Arms</option>
-                    <option>Legs</option>
-                    <option>Glutes</option>
+                    <option value="10">Abs</option>
+                    <option value="8">Arms</option>
+                    <option value="12">Back</option>
+                    <option value="14">Calves</option>
+                    <option value="11">Chest</option>
+                    <option value="9">Legs</option>
+                    <option value="13">Shoulders</option>
                   </Form.Control>
                 </Col>
               </Form.Group>
             </Form>
           </Card>
+          <ListGroup>
+            {displayWorkout}
+          </ListGroup>
         </Container>
         <br />
-
         <Container>
           <Card className="text-center" border="info">
             <Form >
@@ -122,20 +157,19 @@ class Fitness extends React.Component {
               </Button>
             </Form>
 
+            <br />
             <ListGroup>
-              {/* {allrecipes} */}
+              {displayRecipes}
             </ListGroup>
-
           </Card>
         </Container>
-
+        <br />
         <div>
           <Footer />
         </div>
       </>
     );
   }
-
 }
 
 export default Fitness;

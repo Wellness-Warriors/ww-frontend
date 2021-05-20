@@ -16,18 +16,17 @@ class MyProfile extends React.Component {
       formDate: '',
       formEmotion: '',
       formNotes: '',
+
       hasEntries: false,
       listOfEntries: [],
     };
   }
 
   componentDidMount() {
-  }
-
-  componentDidUpdate(){
     this.getEntries();
   }
 
+  //form submit only
   submitHandler = (e) => {
     e.preventDefault();
 
@@ -37,25 +36,27 @@ class MyProfile extends React.Component {
 
     this.addEntry();
     this.getEntries();
-
     console.log('submit handler: submitted');
   }
 
-  getEntries = async () => {
+  getEntries = () => {
 
-    const entries = await axios
-      .get(`${process.env.REACT_APP_BACKEND_URL}/entry`, { params: { email: this.props.email } });
-    console.log(entries);
-    if (entries.data > 0) {
-      this.setState({
-        hasEntries: true,
-        listOfEntries: entries,
-      });
-    } else {
-      this.setState({
-        hasEntries: false,
-      });
-    }
+    axios
+      .get(`${process.env.REACT_APP_BACKEND_URL}/entry`, { params: { email: this.props.email } })
+      .then( serverResponse => {
+        if (serverResponse.data.length > 0) {
+          return this.setState({
+            hasEntries: true,
+            listOfEntries: serverResponse,
+          });
+        } else {
+          return this.setState({
+            hasEntries: false,
+          });
+        }
+      }
+      );
+
   }
 
   addEntry = () => {
@@ -69,8 +70,8 @@ class MyProfile extends React.Component {
         }]
       })
       .then(
-
         (response)=>{
+          console.log('axios POST response from server:',response);
           this.getEntries();
         });
   }
@@ -88,7 +89,6 @@ class MyProfile extends React.Component {
   }
 
   render() {
-    // console.log(this.state.listOfEntries.data.length);
 
     return (
       <>
@@ -148,6 +148,7 @@ class MyProfile extends React.Component {
             </Form>
           </Modal.Body>
         </Modal>
+
         {/* credit Michelle for conditional */}
         {this.state.listOfEntries.data && (this.state.listOfEntries.data.length > 0) &&
           <SavedEntries

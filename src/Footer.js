@@ -4,7 +4,7 @@ import './Footer.css';
 class Footer extends React.Component{
   render(){
     return(
-      <div id="Footer" class="fixed-bottom">
+      <div id="Footer" className="fixed-bottom">
         <footer>&copy; Team Wellness Warrior</footer>
       </div>
     );
