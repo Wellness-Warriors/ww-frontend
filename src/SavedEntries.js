@@ -14,14 +14,12 @@ class SavedEntries extends React.Component{
     axios
       .delete(`${process.env.REACT_APP_BACKEND_URL}/entry/${id}?user=${email}`)
       .then((response)=>{
-        console.log('entry deleted');
         this.props.getAllEntries();
       });
 
   }
 
   render(){
-    console.log(this.props.listOfEntries);
     const arrOfEntries = this.props.listOfEntries.data[0].entry;
     return(
       <div>

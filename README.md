@@ -23,3 +23,6 @@ personalized information for a specific person based on age, Here are important 
 
 sentiment text analyze library
 https://www.npmjs.com/package/sentiment
+
+- html dom tags in api string response
+  - solved using regex from https://www.tutorialspoint.com/how-to-remove-html-tags-from-a-string-in-javascript

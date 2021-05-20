@@ -13,7 +13,7 @@ class NavBar extends React.Component{
       <Navbar id="NavBar" bg="dark" variant="dark">
         <Navbar.Brand href="#wellness-warrior">Wellness Warrior</Navbar.Brand>
         <Nav className="mr-auto">
-          <Nav.Link href="/">Home</Nav.Link>
+          <Nav.Link href="/">Mood</Nav.Link>
           <Nav.Link href="/fitness-food">Fitness & Food</Nav.Link>
           <Nav.Link href="/my-profile">Profile</Nav.Link>
           <Nav.Link href="/about-us">About Us</Nav.Link>
