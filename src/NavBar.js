@@ -14,7 +14,8 @@ class NavBar extends React.Component{
         <Navbar.Brand href="#wellness-warrior">Wellness Warrior</Navbar.Brand>
         <Nav className="mr-auto">
           <Nav.Link href="/">Mood</Nav.Link>
-          <Nav.Link href="/fitness-food">Fitness & Food</Nav.Link>
+          <Nav.Link href="/fitness">Fitness</Nav.Link>
+          <Nav.Link href="/food">Food</Nav.Link>
           <Nav.Link href="/my-profile">Profile</Nav.Link>
           <Nav.Link href="/about-us">About Us</Nav.Link>
         </Nav>

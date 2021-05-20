@@ -5,7 +5,7 @@ import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
+// import Button from 'react-bootstrap/Button';
 import ListGroup from 'react-bootstrap/ListGroup';
 
 
@@ -16,41 +16,7 @@ class Fitness extends React.Component {
       workoutEntry: '',
       hasWorkouts: false,
       workouts: [],
-      recipeEntry: '',
-      hasRecipes: false,
-      recipes: [],
     };
-  }
-
-  edamamHandler = (e) => {
-    e.preventDefault();
-    this.getEdamam();
-  }
-
-  getEdamam = () => {
-
-    const options = {
-      method: 'GET',
-      url: 'https://edamam-recipe-search.p.rapidapi.com/search',
-      params: {q: `${this.state.recipeEntry}`},
-      headers: {
-        'x-rapidapi-key': '1a9fb2435dmsh76acc721cc6c9c6p165fbfjsn83b3b4291f31',
-        'x-rapidapi-host': 'edamam-recipe-search.p.rapidapi.com'
-      }
-    };
-
-    axios
-      .request(options)
-      .then( (response) => {
-        console.log('response.data:',response.data);
-        this.setState({
-          hasRecipes: true,
-          recipes: response.data.hits
-        });
-      })
-      .catch(function (error) {
-        console.error(error);
-      });
   }
 
   workoutHandler = (e) => {
@@ -75,16 +41,8 @@ class Fitness extends React.Component {
 
   render(){
 
-    let allRecipes = (this.state.hasRecipes && this.state.recipes);
-    let displayRecipes = allRecipes && this.state.recipes.map((item, index) => {
-      return(
-        <ListGroup.Item key={index}>
-          {item.recipe.label} : {item.recipe.url}
-        </ListGroup.Item>
-      );
-    });
-
     let selectedWorkouts = this.state.hasWorkouts && this.state.workouts;
+    console.log(selectedWorkouts);
     let displayWorkout = selectedWorkouts&&this.state.workouts
       .map((item,idx)=>{
         return (
@@ -102,8 +60,9 @@ class Fitness extends React.Component {
       <>
         <br />
         <Container>
-          <Card className="text-center" border="info">
+          <Card border="info">
             <Form
+              className="text-center"
               onChange={this.workoutHandler}
             >
               <Form.Group
@@ -134,36 +93,7 @@ class Fitness extends React.Component {
           </ListGroup>
         </Container>
         <br />
-        <Container>
-          <Card className="text-center" border="info">
-            <Form >
-              <h3>Nutritious Recipes</h3>
-              <Form.Group controlId="recipeForm">
-                <Form.Label>
-                  <h5>Enter your ingredient:</h5>
-                </Form.Label>
-                <Form.Control
-                  onInput={(e) => this.setState({recipeEntry: e.target.value})}
-                  type="text"
-                />
-                <Form.Text>
-                </Form.Text>
-              </Form.Group>
-              <Button
-                onClick={this.edamamHandler}
-                variant="info"
-                type="submit">
-                Get Recipes
-              </Button>
-            </Form>
 
-            <br />
-            <ListGroup>
-              {displayRecipes}
-            </ListGroup>
-          </Card>
-        </Container>
-        <br />
         <div>
           <Footer />
         </div>

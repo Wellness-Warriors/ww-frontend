@@ -117,6 +117,9 @@ class Home extends React.Component {
             <p>
               General Sentiment: {this.state.generalSentiment}
             </p>
+            <p>
+              Sentiment Key Placeholder
+            </p>
           </Card>
         </Container>
         <br />
