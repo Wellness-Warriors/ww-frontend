@@ -32,6 +32,7 @@ class SavedEntries extends React.Component{
                   <img
                     src="./img/black-sand.jpg"
                     alt="nature-background"
+                    height="500"
                   />
                   <Carousel.Caption>
                     <h3>{entry.date}</h3>
