@@ -30,6 +30,7 @@ class SavedEntries extends React.Component{
               {arrOfEntries.map((entry,idx)=>(
                 <Carousel.Item key={idx}>
                   <img
+                    className="d-block w-100"
                     src="./img/black-sand.jpg"
                     alt="nature-background"
                     height="500"
