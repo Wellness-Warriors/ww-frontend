@@ -4,9 +4,9 @@ import Footer from './Footer';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
-// import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import ListGroup from 'react-bootstrap/ListGroup';
+import Spinner from 'react-bootstrap/Spinner';
 
 class Food extends React.Component {
   constructor(props) {
@@ -19,10 +19,12 @@ class Food extends React.Component {
   }
   edamamHandler = (e) => {
     e.preventDefault();
-    this.getEdamam();
+    this.getEdamam() && this.setState({
+      isLoading: true
+    });
   }
 
-  getEdamam = () => {
+  getEdamam = async() => {
 
     const options = {
       method: 'GET',
@@ -33,12 +35,12 @@ class Food extends React.Component {
         'x-rapidapi-host': 'edamam-recipe-search.p.rapidapi.com'
       }
     };
-
     axios
       .request(options)
       .then( (response) => {
         console.log('response.data:',response.data);
         this.setState({
+          isLoading: false,
           hasRecipes: true,
           recipes: response.data.hits
         });
@@ -86,9 +88,18 @@ class Food extends React.Component {
             </Form>
 
             <br />
-            <ListGroup>
-              {displayRecipes}
-            </ListGroup>
+            {(!this.state.isLoading)?
+              (<ListGroup>
+                {displayRecipes}
+              </ListGroup>)
+              :
+              (
+                <Container>
+                  <Spinner animation="grow" size="sm" />
+                  <Spinner animation="grow" />
+                </Container>
+              )
+            }
           </Card>
         </Container>
         <br />

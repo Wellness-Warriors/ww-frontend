@@ -51,11 +51,8 @@ class SavedEntries extends React.Component{
               ))}
             </Carousel>
           </Container>
-          :<h3>Your Entries will Render Here</h3>
+          :<h3>Welcome! Click the New Entry button above to begin adding new entries</h3>
         }
-        <br />
-        <Container>
-        </Container>
         <br />
       </div>
     );
