@@ -19,7 +19,7 @@ class AboutUs extends React.Component {
             <Card.Body>
               <Card.Title>Allee McCoy</Card.Title>
               <Card.Text>
-                Hi, my name is Allee McCoy, I am a Speaker Specialist at Microsoft and resign in Bellevue, WA. I currently attend Code Fellows as a student and a future Software Developer. I only recently was introduced to the tech world and saw the endless possible opportunities, I was driven by a new dream and dove right back into school. I look to lead a team of my own one day, collaborate with bright minds and help others through technology.
+                Hi, my name is Allee McCoy, I am a Speaker Specialist at Microsoft and reside in Bellevue, WA. I currently attend Code Fellows as a student and a future Software Developer. I only recently was introduced to the tech world and saw the endless possible opportunities, I was driven by a new dream and dove right back into school. I look to lead a team of my own one day, collaborate with bright minds and help others through technology.
               </Card.Text>
             </Card.Body>
           </Card>
@@ -29,7 +29,7 @@ class AboutUs extends React.Component {
             <Card.Body>
               <Card.Title>Shelby Harner</Card.Title>
               <Card.Text>
-                Hello, my name is Shelby Harner. I am a seasoned Executive Assistant and have been in my current role at Amazon for 6 years. Recently I have been getting deeper into the tech aspects of the teams I support, which brought me to Code Fellows to dive into educating myself in order to gain better understanding of the developers that I work with and to also to position myself for a future role change.
+                Hello, my name is Shelby Harner. I am a seasoned Executive Assistant and have been in my current role at Amazon for 6 years. Recently I have been getting deeper into the tech aspects of the teams I support, which brought me to Code Fellows to educate myself in order to better understand the developers that I work with and to also position myself for a future role change.
               </Card.Text>
             </Card.Body>
           </Card>
@@ -51,12 +51,11 @@ class AboutUs extends React.Component {
             <Card.Body>
               <Card.Title>Lorenzo Ortega</Card.Title>
               <Card.Text>
-                Hello, my name is Lorenzo. I live in Oregon City, OR and my current goal is to become a Software Developer. I want to continue to grow by being adaptive and open to new ideas. My greatest aspiration is to have a meaningful career as a Software Developer where I can learn to become an effective problem solver, expand upon skill set,  and to interact and learn from other professionals in the field.
+                Hello, my name is Lorenzo. I live in Oregon City, OR and my current goal is to become a Software Developer. I want to continue to grow by being adaptive and open to new ideas. My greatest aspiration is to have a meaningful career as a Software Developer where I can learn to become an effective problem solver, expand upon my skill set,  and to interact and learn from other professionals in the field.
               </Card.Text>
             </Card.Body>
           </Card>
         </div>
-
         <div>
           <Footer />
         </div>

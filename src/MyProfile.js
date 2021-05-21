@@ -16,7 +16,6 @@ class MyProfile extends React.Component {
       formDate: '',
       formEmotion: '',
       formNotes: '',
-
       hasEntries: false,
       listOfEntries: [],
     };
@@ -26,7 +25,6 @@ class MyProfile extends React.Component {
     this.getEntries();
   }
 
-  //form submit only
   submitHandler = (e) => {
     e.preventDefault();
 
@@ -36,11 +34,9 @@ class MyProfile extends React.Component {
 
     this.addEntry();
     this.getEntries();
-    console.log('submit handler: submitted');
   }
 
   getEntries = () => {
-
     axios
       .get(`${process.env.REACT_APP_BACKEND_URL}/entry`, { params: { email: this.props.email } })
       .then( serverResponse => {
@@ -56,7 +52,6 @@ class MyProfile extends React.Component {
         }
       }
       );
-
   }
 
   addEntry = () => {
@@ -104,14 +99,11 @@ class MyProfile extends React.Component {
             New Entry
           </Button>
         </Card>
-        {/* look into componentDidUpdate for auto refresh */}
-
         <Modal show={this.state.setShow} onHide={this.handleClose}>
           <Modal.Header closeButton>
             <Modal.Title>New Entry</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-
             <Form >
               <Form.Group>
                 <Form.Label>Date</Form.Label>
@@ -120,36 +112,30 @@ class MyProfile extends React.Component {
                   onInput={(e) => this.setState({ formDate: e.target.value })}
                 />
               </Form.Group>
-
               <Form.Group>
                 <Form.Label>Emotion</Form.Label>
                 <Form.Control
                   type="text"
                   onInput={(e) => this.setState({ formEmotion: e.target.value })}
                 />
-
               </Form.Group>
-
               <Form.Group>
                 <Form.Label>Notes</Form.Label>
                 <Form.Control
-                  type="text"
+                  as="textarea"
                   onInput={(e) => this.setState({ formNotes: e.target.value })}
                 />
                 <Form.Text className="text-muted" />
               </Form.Group>
-
               <Button
                 variant="info"
                 onClick={this.submitHandler}
               >Submit
               </Button>
-
             </Form>
           </Modal.Body>
         </Modal>
-
-        {/* credit Michelle for conditional */}
+        {/* Credit: Michelle Ferreirae for conditional render of SavedEntries Component */}
         {this.state.listOfEntries.data && (this.state.listOfEntries.data.length > 0) &&
           <SavedEntries
             getAllEntries={this.getEntries}
@@ -157,7 +143,6 @@ class MyProfile extends React.Component {
             email={this.props.email}
           />
         }
-
         <div>
           <Footer />
         </div>

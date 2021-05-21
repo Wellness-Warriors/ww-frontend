@@ -7,6 +7,7 @@ import Footer from './Footer';
 import Sentiment from 'sentiment';
 const sentiment = new Sentiment();
 
+
 class Home extends React.Component {
   constructor(props){
     super(props);
@@ -26,7 +27,6 @@ class Home extends React.Component {
 
   getSentiment(e){
     const result = sentiment.analyze(e.target.value);
-    console.log(result);
     this.setState({
       sentimentScore: result.score
     });
@@ -44,6 +44,7 @@ class Home extends React.Component {
       });
     }
   }
+
   getZen = async() =>{
     try{
       let zenData = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/zen`);
@@ -55,97 +56,88 @@ class Home extends React.Component {
       console.log(error);
     }
   }
+
   onChangeHandler = (e) => {
     e.preventDefault();
     let selected = e.target.value;
     console.log('selected',selected);
   }
 
-
   render() {
     return (
-
       <>
         <NavBar />
         <br />
         <Container>
           <Card border="info" className="text-center">
             <Card.Body>
+
               <h3>
                 {this.state.quote}
               </h3>
-              -{this.state.author}
+              - {this.state.author}
             </Card.Body>
           </Card>
         </Container>
         <br />
-
-        {/* <Card className="text-center" border="info">
-            <Form
-              onChange={this.onChangeHandler}>
-              <Form.Group
-                controlId="EmotionForm.SelectCustom">
-                <Form.Label>
-                  <h3>Emotion Selection</h3>
-                </Form.Label>
-                <Col lg="auto">
-                  <Form.Control
-                    as="select"
-                    custom
-                  >
-                    <option>Joy</option>
-                    <option>Sadness</option>
-                    <option>Surprise</option>
-                    <option>Fear</option>
-                    <option>Anger</option>
-                    <option>Disgust</option>
-                  </Form.Control>
-                </Col>
-              </Form.Group>
-            </Form>
-          </Card>
-          <br /> */}
-
         <Container>
           <Card border="info" style={{ width: '20rem' }} className="text-center">
             <h2>Text Analysis</h2>
-            <p>Tell us about your day:</p>
-            <textarea onChange={this.getSentiment}/>
-            <p>
-              Sentiment Score: {this.state.sentimentScore}
-            </p>
-            <p>
-              General Sentiment: {this.state.generalSentiment}
-            </p>
-            <p>
-              Sentiment Key Placeholder
-            </p>
+            <p>How have you been lately?</p>
+            <textarea
+              onChange={this.getSentiment}/>
           </Card>
         </Container>
         <br />
+        <Container>
+          <Card border="info" className="text-center">
+            <Card.Body>
+              <p>
+                Sentiment Score:
+                {this.state.sentimentScore}
+              </p>
+              <p>
+                General Sentiment:
+                {this.state.generalSentiment}
+              </p>
 
-        {/* <Container>
-          <iframe
-            src="https://www.health.gov/myhealthfinder?widget=true"
-            name="myhealthfinderframe"
-            frameborder="0"
-            id="myhealthfinderframe"
-            scrolling="yes"
-            height="485" width="100%"
-            marginheight="0"
-            title="myhealthfinder widget"
-            marginwidth="0">
-            <p>Your browser does not support iframes.
-            </p>
-          </iframe>
-        </Container> */}
-        <br />
+            </Card.Body>
+          </Card>
+          <br/>
+        </Container>
+
+        <Container>
+          <Card border="info">
+            <Card.Body>
+              <h6>
+                Understanding Your Score  and Further Reading:
+              </h6>
+              <p>
+                Sentiment Score (SC) - Score calculated by adding the sentiment values of recognized words.
+              </p>
+              <p>
+              General Sentiment (GS)- Based on SC, if SC greater than 0 then GS will detect general positivity, if SC less than 0 the GS will detect general negativity in text, if SC equal to 0 then there is net neutrality in text.
+              </p>
+              <p>
+                <a href="https://nealcaren.org/lessons/wordlists/#:~:text=AFINN%20is%20an%20English%20word,consists%20of%202%2C477%20coded%20words.&text=After%20importing%20Afinn%20%2C%20you%20need,%2C%20or%20emoticon%20(%20emoticons%20)."
+                >
+                  Understanding AFINN-based Results
+                </a>
+              </p>
+              <p>
+                <a href="https://www.npmjs.com/package/sentiment#how-it-works"
+                >
+                  How we calculated your Sentiment Score
+                </a>
+              </p>
+            </Card.Body>
+          </Card>
+        </Container>
 
         <div>
           <Footer />
         </div>
       </>
-
     );
   }
 }

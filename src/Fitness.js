@@ -5,8 +5,8 @@ import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
-// import Button from 'react-bootstrap/Button';
 import ListGroup from 'react-bootstrap/ListGroup';
+import Spinner from 'react-bootstrap/Spinner';
 
 
 class Fitness extends React.Component {
@@ -21,10 +21,12 @@ class Fitness extends React.Component {
 
   workoutHandler = (e) => {
     const id = parseInt(e.target.value);
-    this.getWorkout(id);
+    this.getWorkout(id) && this.setState({
+      isLoading: true
+    });
   }
 
-  getWorkout = (ident) => {
+  getWorkout = async(ident) => {
     axios
       .get('https://wger.de/api/v2/exerciseinfo/?limit=100&offset=20')
       .then(response => {
@@ -33,6 +35,7 @@ class Fitness extends React.Component {
           return (workout.category.id === ident);
         });
         this.setState({
+          isLoading: false,
           hasWorkouts: true,
           workouts: results,
         });
@@ -88,9 +91,19 @@ class Fitness extends React.Component {
               </Form.Group>
             </Form>
           </Card>
-          <ListGroup>
-            {displayWorkout}
-          </ListGroup>
+
+          {(!this.state.isLoading)?
+            (<ListGroup>
+              {displayWorkout}
+            </ListGroup>)
+            :
+            (
+              <Container>
+                <Spinner animation="grow" size="sm" />
+                <Spinner animation="grow" />
+              </Container>
+            )
+          }
         </Container>
         <br />
 
