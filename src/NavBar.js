@@ -11,6 +11,7 @@ class NavBar extends React.Component{
     return(
 
       <Navbar id="NavBar" bg="dark" variant="dark">
+        {/* This href doesn't make a lot of sense; usually I'd just link that back to the root / */}
         <Navbar.Brand href="#wellness-warrior">Wellness Warrior</Navbar.Brand>
         <Nav className="mr-auto">
           <Nav.Link href="/">Mood</Nav.Link>

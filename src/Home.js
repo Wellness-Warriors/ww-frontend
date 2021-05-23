@@ -4,6 +4,9 @@ import NavBar from './NavBar';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 import Footer from './Footer';
+// Sentiment is a pretty large library to include on your frontend.
+// Lots of data you're forcing users to download.
+// It would be more normal to do the actual analysis on your server and do a request with the text the user has typed.
 import Sentiment from 'sentiment';
 const sentiment = new Sentiment();
 
@@ -25,6 +28,9 @@ class Home extends React.Component {
 
   }
 
+  // This is a really weird feature... you have the users type things in, but it doesn't save or do anything
+  // long-term with that data. This is strongly contributing to the app feeling like a bunch of bolted-together
+  // features, not a complete app.
   getSentiment(e){
     const result = sentiment.analyze(e.target.value);
     this.setState({
@@ -57,11 +63,7 @@ class Home extends React.Component {
     }
   }
 
-  onChangeHandler = (e) => {
-    e.preventDefault();
-    let selected = e.target.value;
-    console.log('selected',selected);
-  }
+  // unused function
 
   render() {
     return (

@@ -1,5 +1,6 @@
 # Wellness Warriors App
 
+<!-- Why do you have two different frontend repos, and the one you seemed to work in doesn't have any useful documentation? This is what potential employers are most likely to look at, is your READMEs. Make them good. -->
 App Project Documentation: https://github.com/Wellness-Warriors/WW-App
 
 ## API References
@@ -18,3 +19,5 @@ https://wger.de/en/software/api
 
 - html dom tags in api string response
   - solved using regex from https://www.tutorialspoint.com/how-to-remove-html-tags-from-a-string-in-javascript
+
+<!-- No attribution here for auth0 docs, either. -->
