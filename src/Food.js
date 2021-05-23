@@ -29,8 +29,10 @@ class Food extends React.Component {
     const options = {
       method: 'GET',
       url: 'https://edamam-recipe-search.p.rapidapi.com/search',
-      params: {q: `${this.state.recipeEntry}`},
+      params: {q: this.state.recipeEntry},
       headers: {
+        // You exposed this API key in your code. This is very bad.
+        // This is what you should be using a .env file for.
         'x-rapidapi-key': '1a9fb2435dmsh76acc721cc6c9c6p165fbfjsn83b3b4291f31',
         'x-rapidapi-host': 'edamam-recipe-search.p.rapidapi.com'
       }
@@ -88,6 +90,8 @@ class Food extends React.Component {
             </Form>
 
             <br />
+            {/* This is the same weird ternary for loading that's in multiple files in your code.
+            This is repetitive and should be abstracted into a component that you use. */}
             {(!this.state.isLoading)?
               (<ListGroup>
                 {displayRecipes}

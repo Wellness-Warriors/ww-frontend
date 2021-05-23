@@ -27,6 +27,12 @@ class Fitness extends React.Component {
   }
 
   getWorkout = async(ident) => {
+    // It's terrible practice to re-make this request every time a user clicks a specific exercise type, and then filter the results.
+    // If you just cached the entire returned data when they made the first request, you could just display the filtered data each time they choose a new one.
+    // Or, you could include the categoryId in the request you're making to the API to only get relevant results back.
+    // Especially since you have the ident param that corresponds to the group, that would be a much better option.
+    // Instead, the user's device is making multiple identical requests to the endpoint and then not using all the data that comes back.
+    // This unnecessarily results in more data usage for users, and fewer results displayed for each request.
     axios
       .get('https://wger.de/api/v2/exerciseinfo/?limit=100&offset=20')
       .then(response => {

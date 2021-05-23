@@ -41,12 +41,13 @@ class MyProfile extends React.Component {
       .get(`${process.env.REACT_APP_BACKEND_URL}/entry`, { params: { email: this.props.email } })
       .then( serverResponse => {
         if (serverResponse.data.length > 0) {
-          return this.setState({
+          // you're not doing anything with these returned values, so I'm not sure why you're returning them.
+          this.setState({
             hasEntries: true,
             listOfEntries: serverResponse,
           });
         } else {
-          return this.setState({
+          this.setState({
             hasEntries: false,
           });
         }

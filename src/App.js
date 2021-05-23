@@ -28,10 +28,12 @@ class App extends React.Component{
       <Router>
         <Switch>
           <Route exact path="/">
-            {!isAuthenticated? <LogIn/> : <Home />}
+            {/* Weird to use the ! in this conditional; usually you want to just flip the order to make it more readable. */}
+            {isAuthenticated? <Home /> : <LogIn />}
           </Route>
 
           <Route path="/fitness">
+            {/* Weird that you wouldn't just include the nav bar outside of the Router, so it shows on every page. */}
             <NavBar />
             <Fitness />
           </Route>
